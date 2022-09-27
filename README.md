@@ -2,7 +2,7 @@
 
 Projeto de número **#3** da máteria de *Interfaces Digitais - Front-End*.
 
-Esse projeto é um jogo da memória bem simples, e nele pude desenvolver os conhechimentos em:
+Esse projeto é um jogo da memória bem simples, e nele pude desenvolver os conhecimentos em:
 
 - HTML
 - CSS Grid

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Memória</title>
+    <link rel="stylesheet" href="assets/styles/global.css">
+    <link rel="stylesheet" href="assets/styles/index.css">
+</head>
+<body>
+    
+    <aside id="controler-game">
+        <h1 id="title">Jogo da Memória Musical</h1>
+
+        <button id="button-restart-game">Restart</button>
+        
+        <div id="time-match">
+            <span id="minute">00</span>
+                :
+            <span id="second">00</span>
+                :
+            <span id="millisecond">00</span>
+        </div>
+    </aside>
+
+    <main id="board-game"></main>
+
+<script src="script.js" type="module"></script>
+<script src="./assets/scripts/generatePiecesGame.js" type="module"></script>
+<script src="./assets/scripts/timer.js" type="module"></script>
+</body>
+</html>

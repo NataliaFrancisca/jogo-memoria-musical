@@ -2,7 +2,6 @@ import {array_images} from "../data/db.js"
 
 export const numberOfPieces = 6;
 const boardGame = document.getElementById("board-game");
-
 const getRandomNumber = () => Math.floor(Math.random() * numberOfPieces);
 
 const generateRandomArrayOfPieces = () => {
@@ -17,24 +16,24 @@ const generateRandomArrayOfPieces = () => {
         }
     }
 
-    return arrayPiecesRandom;
+    const cardPieaces = arrayPiecesRandom.map((id, index)=> {
+        if(array_images[id]){
+            return {pieceId: index, ...array_images[id]}
+        }
+    })
+
+    return cardPieaces;
 }
 
 const createLines = (arrayPieces) => {
-    let piecesArr = [];
-
-    arrayPieces.map(number => {
-        const image = array_images.find(image => image.id == number);
-        piecesArr.push(image);
-    })
-
     const line = document.createElement("section");
     line.classList.add("line");
 
-    piecesArr.forEach(piece => {
+    arrayPieces.forEach(piece => {
         const cardImage = document.createElement("button")
         cardImage.classList.add("card-image");
-        cardImage.setAttribute('name', piece.artist)
+        cardImage.setAttribute('name', `${piece.artist}`)
+        cardImage.setAttribute('key', `${piece.pieceId}`)
 
         const image = document.createElement("img");
         image.src = `./assets/${piece.image}`;

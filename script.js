@@ -12,9 +12,13 @@ const startGame = () => {
     cards = [...document.querySelectorAll(".card-image")];
     cards.forEach(card => {
         card.addEventListener("click", () => {
-            const nameCard = card.getAttribute("name");
+            const cardInfo = {
+                nameCard: card.getAttribute("name"),
+                idCard: card.getAttribute("key")
+            };
+
             card.classList.add("visible");
-            objCompareCards.firstCard == null ? objCompareCards.firstCard = nameCard : objCompareCards.secondCard = nameCard;
+            objCompareCards.firstCard == null ? objCompareCards.firstCard = cardInfo : objCompareCards.secondCard = cardInfo;
             Object.values(objCompareCards).every(card => card && true) ? compareCards() : false;
             controlGame();
         })
@@ -35,11 +39,14 @@ const controlGame = () => {
 }
 
 const compareCards = () => {
-    if(objCompareCards.firstCard == objCompareCards.secondCard){
-      setCardDisabled(objCompareCards.firstCard)
-      cardsFinded++;
+    const valuesFirstCard = Object.values(objCompareCards.firstCard);
+    const valuesSecondCard = Object.values(objCompareCards.secondCard);
+
+    if(valuesFirstCard[0] == valuesSecondCard[0] && valuesFirstCard[1] !== valuesSecondCard[1]){
+        setCardDisabled(objCompareCards.firstCard)
+        cardsFinded++;
     }
-    
+
     setTimeout(() => {
         cleanBoarder();
     },200)       
@@ -47,14 +54,16 @@ const compareCards = () => {
 
 const setCardDisabled = (cardDisable) => {
     cards.map(card => {
-        if(card.getAttribute("name") == cardDisable){
+        if(card.getAttribute("name") == cardDisable.nameCard){
             card.setAttribute("disabled", "disabled");
         }
     })
 }
 
 const cleanBoarder = () => {
-    cards.map(card => card.classList.remove("visible"));
+    cards.map(card => {
+        card.classList.remove("visible");
+    });
     objCompareCards = {firstCard: null, secondCard: null}
 }
 
